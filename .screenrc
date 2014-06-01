@@ -1,0 +1,64 @@
+##############
+# All Version ( with emacs and zsh )
+# Isao Nakamura ( 0x0082@gmail.com )
+# Last Modified: 08/05/18
+##############
+# Keybind
+##############
+escape ^t^t # prefixキーをC-tに変更する
+bind -c REGION 2 split
+bind -c REGION 1 only
+bind -c REGION 0 remove
+bind -c REGION o focus
+bind -c REGION \^ resize
+bind x command -c REGION
+#bind ^U encoding utf8(or euc or sjis)
+#bind w windowlist -b  # window list の表示方法を変更
+
+##############
+# Misc
+##############
+nethack on  # nethack-mode
+
+startup_message off  # スタートアップページを表示しない
+autodetach on  # 回線が切れた場合に自動的にデタッチ
+
+#vbell off  # visible bell を使用しない
+#bell "Bell in window %."  # 隠れているwindowでのbellを通知
+
+#deflogin off  # 新しいwindowを開く度に/etc/utmpにentryを追加しない
+
+activity "Activity in window %."  # 隠れているwindowの状態変化を通知
+
+# ステータスラインが消えなくなる
+#termcapinfo kterm 'hs:ts=\E[?2S\E[?E\E[?%i%dT:fs=\E[?F:es:ds=\E[?E'
+#termcapinfo xterm* 'hs:ts=\E[?E\E[?%i%dT:fs=\E[?F:es:ds=\E[?E'
+# 反転が変にならない
+#termcapinfo kterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;3;4;6l'
+# 縮まない
+#termcapinfno kterm 'cl=\E[H\E[2J'
+
+# タイトルバーをステータス表示に使う
+#termcapinfo  xterm|kterm|kterm-color 'hs:ts=\E]2;:fs=\007:ds=\E]0;screen\007'
+#terminfo xterm|kterm|kterm-color XT # for mice
+#shell -$SHELL # make the shell in every window a login shell
+defscrollback 1000
+
+hardstatus alwayslastline "[%02c] %`%-w%{=b bw}%n %t%{-}%+w"
+#hardstatus alwayslastline "%w"
+#hardstatus string " %m/%d %D %c [%n:%Lw] %H:%h" # status表示のformat
+## m:month, d:day, D:weekday, c:current time in 24h,
+## n:window number, w:all window numbers, H:hostname,
+## h:hardstatus of the window, l:current load of the system
+# defhstatus "^En:^Et"
+# defhstatus "screen: ^E (^Et)"
+
+##############
+# Reference:
+# 1. Introduction of screen
+# http://www.gentei.org/~yuuji/rec/pc/intro-screen.html
+# 2. GNU screen いろいろまとめ
+# http://d.hatena.ne.jp/naoya/20051223/1135351050
+# 3. .screenrcコマンド一覧
+# http://www.limy.org/program/screen_command.html
+##############
