@@ -8,6 +8,10 @@ setlocal autoindent
 setlocal smartindent
 setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
 
+let g:netrw_liststyle = 3
+let g:netrw_altv = 1
+let g:netrw_alto = 1
+
 if has('vim_starting')
   set nocompatible               " Be iMproved
 
