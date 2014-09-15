@@ -1,5 +1,7 @@
 set number
 set incsearch
+set ignorecase
+set smartcase
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
@@ -7,11 +9,17 @@ set expandtab
 set autoindent
 set smartindent
 set cinwords=if,elif,else,for,while,try,except,finally,def,class
+set nowritebackup
+set nobackup
+set noswapfile
+set list
 
 let g:vim_markdown_folding_disabled=1
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 let g:netrw_alto = 1
+
+autocmd FileType python setlocal completeopt-=preview " Kill docstring
 
 function! s:Exec()
     exe "!" . &ft . " %"        
