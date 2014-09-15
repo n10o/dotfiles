@@ -1,17 +1,23 @@
 set number
 set incsearch
-setlocal shiftwidth=4
-setlocal tabstop=8
-setlocal softtabstop=4
-setlocal expandtab
-setlocal autoindent
-setlocal smartindent
-setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
+set autoindent
+set smartindent
+set cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 let g:vim_markdown_folding_disabled=1
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 let g:netrw_alto = 1
+
+function! s:Exec()
+    exe "!" . &ft . " %"        
+:endfunction         
+command! Exec call <SID>Exec() 
+map <silent> <C-P> :call <SID>Exec()<CR>
 
 """ Unite.vim
 let g:unite_enable_start_insert = 1
