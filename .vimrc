@@ -58,6 +58,7 @@ NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'pangloss/vim-javascript'
 
 call neobundle#end()
 
