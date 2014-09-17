@@ -13,13 +13,14 @@ set nowritebackup
 set nobackup
 set noswapfile
 set list
+setlocal formatoptions-=r " disable auto comment
+setlocal formatoptions-=o
 
 let g:vim_markdown_folding_disabled=1
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 let g:netrw_alto = 1
 
-autocmd FileType python setlocal completeopt-=preview " Kill docstring
 
 function! s:Exec()
     exe "!" . &ft . " %"        
@@ -78,3 +79,5 @@ filetype plugin indent on
 NeoBundleCheck
 
 syntax on
+
+autocmd FileType python setlocal completeopt-=preview
