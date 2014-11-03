@@ -13,14 +13,21 @@ set nowritebackup
 set nobackup
 set noswapfile
 set list
-setlocal formatoptions-=r " disable auto comment
-setlocal formatoptions-=o
+set formatoptions-=r " disable auto comment
+set formatoptions-=o
 
 let g:vim_markdown_folding_disabled=1
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 let g:netrw_alto = 1
 
+nnoremap <silent> st :tablast <bar> tabnew<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sn gt
+nnoremap sp gT
+nnoremap <silent> si :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
 
 function! s:Exec()
     exe "!" . &ft . " %"        
@@ -28,11 +35,8 @@ function! s:Exec()
 command! Exec call <SID>Exec() 
 map <silent> <C-P> :call <SID>Exec()<CR>
 
-""" Unite.vim
+""" Unite
 let g:unite_enable_start_insert = 1
-let g:vimfiler_as_default_explorer = 1 " netrw replace
-" Edit file by tabedit.
-"let g:vimfiler_edit_action = 'tabopen'
 
 nnoremap [unite]    <Nop>
 nmap     <Space>u [unite]
@@ -40,7 +44,39 @@ nmap     <Space>u [unite]
 nnoremap <silent> [unite]f   :<C-u>Unite file<CR>
 nnoremap <silent> [unite]b   :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]a   :<C-u>Unite file buffer<CR>
-"""
+""" VimFiler
+let g:vimfiler_as_default_explorer = 1 " netrw replace
+" Edit file by tabedit.
+"let g:vimfiler_edit_action = 'tabopen'
+" IDE lize
+"autocmd VimEnter * VimFiler -split -simple -winwidth=30 -no-quit
+
+" SID(use tabline)
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+
+" Tabline(tabname)
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = title
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2 " 常にタブラインを表示
 
 if has('vim_starting')
   set nocompatible               " Be iMproved
