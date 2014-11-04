@@ -44,12 +44,6 @@ nnoremap sn gt
 nnoremap sp gT
 nnoremap <silent> si :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
 
-function! s:Exec()
-    exe "!" . &ft . " %"        
-:endfunction         
-command! Exec call <SID>Exec() 
-map <silent> <C-P> :call <SID>Exec()<CR>
-
 """ Unite
 let g:unite_enable_start_insert = 1
 
