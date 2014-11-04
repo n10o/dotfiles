@@ -102,7 +102,6 @@ NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'tpope/vim-fugitive'
 " NeoBundle 'kien/ctrlp.vim'
 call neobundle#end()
 
