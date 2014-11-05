@@ -12,5 +12,5 @@ noremap l <C-n>
 noremap h <C-p>
 noremap j 5<C-e>
 noremap k 5<C-y>
-noremap <C-l> :tabmove! +1<CR>
-noremap <C-h> :tabmove! -1<CR>
+noremap <C-Right> :tabmove! +1<CR>
+noremap <C-Left> :tabmove! -1<CR>
