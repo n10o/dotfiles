@@ -11,7 +11,7 @@
 #export LANG=ja_JP.UTF-8
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv virtualenv-init -)" # this is too heavy
 
 export PATH=/opt/local/bin:/opt/local/sbin/:~/sh:$PATH
 export MANPATH=/opt/local/man:$MANPATH
