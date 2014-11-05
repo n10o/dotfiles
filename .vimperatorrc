@@ -5,11 +5,11 @@
 set focuscontent
 set wildmode=list:full
 set complete=sl
-" use f or F key
 set hintchars=hjklasdfgyuiopqwertnmzxcvb
+ignorekeys add mail\\.google\\.com
 
-noremap l gt
-noremap h gT
+noremap l <C-n>
+noremap h <C-p>
 noremap j 5<C-e>
 noremap k 5<C-y>
 noremap <C-l> :tabmove! +1<CR>
