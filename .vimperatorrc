@@ -1,0 +1,16 @@
+" (Win) C:\Program Files (x86)\_vimperatorrc (C:\Users\<username>\_vimperatorrc)
+" (Mac) ~/.vimperatorrc
+
+" disable auto focus form
+set focuscontent
+set wildmode=list:full
+set complete=sl
+" use f or F key
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+
+noremap l gt
+noremap h gT
+noremap j 5<C-e>
+noremap k 5<C-y>
+noremap <C-l> :tabmove! +1<CR>
+noremap <C-h> :tabmove! -1<CR>
