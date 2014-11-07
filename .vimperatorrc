@@ -6,7 +6,9 @@ set focuscontent
 set wildmode=list:full
 set complete=sl
 set hintchars=hjklasdfgyuiopqwertnmzxcvb
-ignorekeys add mail\\.google\\.com
+" ignorekeys setting kills 'open label' shortcut. RIP
+ignorekeys add mail\\.google\\.com -except <C-p>,<C-n>,h,l,:
+" ignorekeys add mail\\.google\\.com
 
 noremap l <C-n>
 noremap h <C-p>
