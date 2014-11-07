@@ -9,6 +9,8 @@ set hintchars=hjklasdfgyuiopqwertnmzxcvb
 " ignorekeys setting kills 'open label' shortcut. RIP
 ignorekeys add mail\\.google\\.com -except <C-p>,<C-n>,h,l,:
 " ignorekeys add mail\\.google\\.com
+" IME off in command mode
+style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
 
 noremap l <C-n>
 noremap h <C-p>
