@@ -9,13 +9,14 @@
 # C-/でなぜかUndoできない．C-x u なら可
 ##############
 #export LANG=ja_JP.UTF-8
-export PATH="$HOME/.pyenv/bin:$PATH"
+export NVM_DIR="/Users/n10o/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export GOPATH=~/.go/1.3/
 eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)" # this is too heavy
 
-export PATH=/opt/local/bin:/opt/local/sbin/:~/sh:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin/:~/sh:$HOME/.pyenv/shims:$HOME/.pyenv/bin:/usr/local/mysql/bin:$PATH
 export MANPATH=/opt/local/man:$MANPATH
-export PATH=$PATH:/usr/local/mysql/bin
 
 autoload -U compinit; compinit                 # 補完の有効
 zstyle ':completion:*' list-colors di=34 fi=0  # 色つきの補完
