@@ -18,8 +18,11 @@ set expandtab
 set autoindent
 set smartindent
 
-set formatoptions-=r " disable auto comment
-set formatoptions-=o
+augroup auto_comment_off
+  autocmd!
+  autocmd BufEnter * setlocal formatoptions-=r
+  autocmd BufEnter * setlocal formatoptions-=o
+augroup END
 
 set nowritebackup
 set nobackup
