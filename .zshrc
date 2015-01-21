@@ -39,6 +39,13 @@ alias -g G="| grep "
 alias -g L="| less -r"
 alias ql="qlmanage -p "$@" >& /dev/null"  # MacのQuickLook
 alias if-restart="sudo ifconfig en1 down;sudo ifconfig en1 up"
+alias g="git"
+alias gs="git status --short --branch"
+alias gb="git branch -a"
+alias gd="git diff"
+alias gl="git log --stat"
+alias glg="git log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'"
+alias gla="git log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'"
 # alias gd='dirs -v; echo -n "select number: "; read newdir; cd -"$newdir"'
 # alias fcd="source ~/sh/fcd.sh"  # MacのFinderの場所にcd
 # alias sshfs-xxxxx="/Applications/sshfs.app/Contents/Resources/sshfs-static username@ipaddress:/ ~/mnt -p 7022 -oping_diskarb,volname=xxxxx"
@@ -94,8 +101,51 @@ local GREEN=$'%{[32m%}'
 local BLUE=$'%{[34m%}'
 local DEFAULT=$'%{[m%}'
 
-PROMPT=$BLUE'$USER/%m%(!.#.$) '$DEFAULT
-RPROMPT=$GREEN'[%~]'$DEFAULT
+#PROMPT=$BLUE'$USER/%m%(!.#.$) '$DEFAULT
+#RPROMPT=$GREEN'[%~]'$DEFAULT
+# Special setting for mac
+PROMPT=$BLUE'[%~] '$DEFAULT
+
+function chpwd(){ ls }
+
+### cdr
+autoload -Uz is-at-least
+if is-at-least 4.3.11
+then
+    autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+      add-zsh-hook chpwd chpwd_recent_dirs
+        zstyle ':chpwd:*' recent-dirs-max 5000
+          zstyle ':chpwd:*' recent-dirs-default yes
+            zstyle ':completion:*' recent-dirs-insert both
+          fi
+
+### peco
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
+function peco-cdr () {
+    local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N peco-cdr
+bindkey '^O' peco-cdr
 
 ##############
 # Reference:
