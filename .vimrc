@@ -18,6 +18,11 @@ set expandtab
 set autoindent
 set smartindent
 
+hi Pmenu ctermbg=0
+hi PmenuSel ctermbg=4
+hi PmenuSbar ctermbg=2
+hi PmenuThumb ctermfg=3
+
 augroup auto_comment_off
   autocmd!
   autocmd BufEnter * setlocal formatoptions-=r
@@ -83,6 +88,17 @@ endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2 " always display
 
+""" neocomplete + jedi
+" autocmd FileType python setlocal omnifunc=jedi#completions
+" 
+" let g:jedi#auto_vim_configuration = 0
+" 
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"         let g:neocomplete#force_omni_input_patterns = {}
+" endif
+" 
+" let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+
 """ NeoBundle
 if has('vim_starting')
   set nocompatible               " Be iMproved
@@ -105,6 +121,7 @@ NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'pangloss/vim-javascript'
+" NeoBundle 'Shougo/neocomplete.vim' " need lua vim
 " NeoBundle 'kien/ctrlp.vim'
 call neobundle#end()
 
